@@ -23,7 +23,7 @@ const Home = () => {
         <div className="container py-5">
           <div className="row align-items-center g-5">
             <div className="col-lg-7">
-              <p className="text-primary fw-semibold mb-2">JobConnect</p>
+              <p className="text-primary fw-semibold mb-2">Elevate</p>
               <h1 className="display-5 fw-bold mb-3">Find talent and career opportunities in one focused workspace.</h1>
               <p className="lead text-secondary mb-4">
                 Employers can post openings and manage applicants while job seekers build profiles,
