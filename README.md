@@ -1,8 +1,8 @@
-# JobConnect Frontend
+# Elevate Frontend
 
-This repository contains the React frontend for JobConnect, a learning project that shows students how to build a role-based job marketplace user interface with React, React Router, Axios, Bootstrap, and Vite.
+This repository contains the React frontend for Elevate, a learning project that shows students how to build a role-based job marketplace user interface with React, React Router, Axios, Bootstrap, and Vite.
 
-The backend lives in a separate repository named `jobconnect-backend`.
+The backend lives in a separate repository named `elevate-backend`.
 
 ## What This Frontend Teaches
 
@@ -17,7 +17,7 @@ The backend lives in a separate repository named `jobconnect-backend`.
 ## Folder Structure
 
 ```text
-jobconnect-frontend/
+elevate-frontend/
   src/
     components/            # Reusable UI components
     context/               # AuthContext for login state
@@ -46,7 +46,7 @@ jobconnect-frontend/
 
 - Node.js 18 or newer
 - npm
-- Running JobConnect backend at `http://localhost:5000`
+- Running Elevate backend at `http://localhost:5000`
 
 ## Setup
 
@@ -86,11 +86,11 @@ The backend seed data provides these accounts:
 
 | Role | Email | Password |
 | --- | --- | --- |
-| Admin | `admin@jobconnect.com` | `password123` |
-| Employer | `employer1@jobconnect.com` | `password123` |
-| Employer | `employer2@jobconnect.com` | `password123` |
-| Job Seeker | `seeker1@jobconnect.com` | `password123` |
-| Job Seeker | `seeker2@jobconnect.com` | `password123` |
+| Admin | `admin@elevate.com` | `password123` |
+| Employer | `employer1@elevate.com` | `password123` |
+| Employer | `employer2@elevate.com` | `password123` |
+| Job Seeker | `seeker1@elevate.com` | `password123` |
+| Job Seeker | `seeker2@elevate.com` | `password123` |
 
 ## Main Screens
 
