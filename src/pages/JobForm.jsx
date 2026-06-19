@@ -4,6 +4,14 @@ import api from '../services/api';
 import AlertMessage from '../components/AlertMessage';
 import Loading from '../components/Loading';
 
+// ============================================================================
+// JOB FORM - CREATE & UPDATE OPERATIONS
+// ============================================================================
+// This form handles TWO CRUD operations:
+// - CREATE: Submit empty form → POST /api/jobs (new job)
+// - UPDATE: Load existing job → PUT /api/jobs/:id (edit job)
+// ============================================================================
+
 const blank = {
   // Defaults used when creating a new job.
   title: '',
@@ -27,7 +35,10 @@ const JobForm = ({ mode = 'create' }) => {
 
   useEffect(() => {
     if (mode !== 'edit') return;
-    // In edit mode, load the current job and prefill the form.
+    
+    // ========= READ OPERATION (for UPDATE) =========
+    // GET /api/jobs/:id
+    // Fetch the existing job data to populate the form
     api
       .get(`/jobs/${id}`)
       .then((res) => {
@@ -52,10 +63,17 @@ const JobForm = ({ mode = 'create' }) => {
     setError('');
     setSaving(true);
     try {
-      // Same component handles both create and edit; mode chooses the endpoint.
       if (mode === 'edit') {
+        // ========= UPDATE OPERATION =========
+        // PUT /api/jobs/:id
+        // Send updated job data (title, description, salary, deadline, etc.)
+        // Backend updates the record and returns the modified job
         await api.put(`/jobs/${id}`, form);
       } else {
+        // ========= CREATE OPERATION =========
+        // POST /api/jobs
+        // Send new job data to create a job posting
+        // Backend assigns ID, timestamps, and returns the created job
         await api.post('/jobs', form);
       }
       navigate('/employer/jobs');
@@ -123,8 +141,17 @@ const JobForm = ({ mode = 'create' }) => {
           </div>
         </div>
         <button className="btn btn-primary mt-3" disabled={saving}>
-          {saving ? 'Saving...' : 'Save Job'}
+          {saving ? 'Saving...' : mode === 'edit' ? 'Update Job' : 'Post Job'}
         </button>
+      </div>
+
+      {/* CRUD Operation Info */}
+      <div className="card-footer bg-light">
+        <small className="text-secondary">
+          {mode === 'edit' 
+            ? '🔄 UPDATE Operation: PUT /api/jobs/:id' 
+            : '✨ CREATE Operation: POST /api/jobs'}
+        </small>
       </div>
     </form>
   );
