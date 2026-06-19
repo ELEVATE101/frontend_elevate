@@ -4,6 +4,7 @@ import api, { uploadUrl } from '../services/api';
 import AlertMessage from '../components/AlertMessage';
 import Loading from '../components/Loading';
 import StatusBadge from '../components/StatusBadge';
+import { useAuth } from '../context/AuthContext';
 
 const ViewApplicants = () => {
   const { id } = useParams();
@@ -11,6 +12,7 @@ const ViewApplicants = () => {
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
+  const { deleteJobSeeker } = useAuth();
 
   const loadApplications = () => {
     // The backend checks that this employer owns the job.
@@ -39,6 +41,18 @@ const ViewApplicants = () => {
     }
   };
 
+  const removeJobSeeker = async (applicationId) => {
+    setMessage('');
+    setError('');
+    try {
+      await deleteJobSeeker(applicationId);
+      setMessage('Job seeker deleted successfully');
+      loadApplications();
+    } catch (err) {
+      setError(err.response?.data?.message || 'Could not delete job seeker');
+    }
+  };
+
   if (loading) return <Loading />;
 
   return (
@@ -57,6 +71,7 @@ const ViewApplicants = () => {
                 <th>CV</th>
                 <th>Status</th>
                 <th>Update</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -80,6 +95,15 @@ const ViewApplicants = () => {
                       <option>Rejected</option>
                       <option>Hired</option>
                     </select>
+                  </td>
+                  <td>
+                    <button
+                      type="button"
+                      className="btn btn-sm btn-danger"
+                      onClick={() => removeJobSeeker(app.id)}
+                    >
+                      Delete Seeker
+                    </button>
                   </td>
                 </tr>
               ))}

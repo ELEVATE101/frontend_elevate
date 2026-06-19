@@ -142,6 +142,12 @@ export const AuthProvider = ({ children }) => {
     return res.data;
   };
 
+  // Delete a job seeker from a job application (employer/admin only)
+  const deleteJobSeeker = async (applicationId) => {
+    const res = await api.delete(`/applications/${applicationId}/job-seeker`);
+    return res.data;
+  };
+
   // ===== DELETE =====
   // Delete a job
   const deleteJob = async (jobId) => {
@@ -171,6 +177,7 @@ export const AuthProvider = ({ children }) => {
       updateEmployerProfile,
       updateJobSeekerProfile,
       updateApplicationStatus,
+      deleteJobSeeker,
       deleteJob
     }),
     [user, loading]
