@@ -7,7 +7,7 @@ const api = axios.create({
 
 // Before every request, attach the saved JWT if the user is logged in.
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('jobconnect_token');
+  const token = localStorage.getItem('elevate_token');
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
