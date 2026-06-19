@@ -129,19 +129,6 @@ const MyJobs = () => {
           </div>
         )}
       </div>
-
-      {/* CRUD Operations Reference */}
-      <div className="card mt-4 bg-light">
-        <div className="card-body">
-          <h5 className="card-title">📚 CRUD Operations Used</h5>
-          <ul className="mb-0 small">
-            <li><strong>CREATE:</strong> Click "Post New Job" → Opens JobForm.jsx → POST /api/jobs</li>
-            <li><strong>READ:</strong> This page displays all jobs → GET /api/jobs/employer/my-jobs</li>
-            <li><strong>UPDATE:</strong> Click "Edit" → JobForm.jsx in edit mode → PUT /api/jobs/:id</li>
-            <li><strong>DELETE:</strong> Click "Delete" → Confirms → DELETE /api/jobs/:id</li>
-          </ul>
-        </div>
-      </div>
     </div>
   );
 };
